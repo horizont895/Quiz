@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test sur la Localisation et la Cartographie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .question {
+            margin: 20px 0;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+ <center>
+    <h1>Le quiz</h1>
+
+    <div id="quiz">
+        <div class="question" id="question1">
+            <p>Q1. Quelle est la fonction principale d'un GPS ?</p>
+            <button onclick="checkAnswer(1, 'a')">A. Localiser un point</button>
+            <button onclick="checkAnswer(1, 'b')">B. Mesurer la vitesse</button>
+            <button onclick="checkAnswer(1, 'c')">C. Créer des cartes</button>
+        </div>
+
+        <div class="question hidden" id="question2">
+            <p>Q2. Quelles sont les coordonnées utilisées pour localiser un point sur Terre ?</p>
+            <button onclick="checkAnswer(2, 'a')">A. Latitude et longitude</button>
+            <button onclick="checkAnswer(2, 'b')">B. Altitude et profondeur</button>
+            <button onclick="checkAnswer(2, 'c')">C. X et Y</button>
+        </div>
+
+        <div class="question hidden" id="question3">
+            <p>Q3. Quel outil moderne est essentiel pour la cartographie numérique ?</p>
+            <button onclick="checkAnswer(3, 'a')">A. Compas</button>
+            <button onclick="checkAnswer(3, 'b')">B. GPS</button>
+            <button onclick="checkAnswer(3, 'c')">C. Papier</button>
+        </div>
+
+        <div class="question hidden" id="question4">
+            <p>Q4. Quelle unité utilise-t-on pour exprimer la latitude et la longitude ?</p>
+            <button onclick="checkAnswer(4, 'a')">A. Mètres</button>
+            <button onclick="checkAnswer(4, 'b')">B. Degrés</button>
+            <button onclick="checkAnswer(4, 'c')">C. Kilomètres</button>
+        </div>
+
+        <div class="question hidden" id="question5">
+            <p>Q5. Quel est le méridien de référence pour mesurer la longitude ?</p>
+            <button onclick="checkAnswer(5, 'a')">A. Méridien de Paris</button>
+            <button onclick="checkAnswer(5, 'b')">B. Méridien de Greenwich</button>
+            <button onclick="checkAnswer(5, 'c')">C. Méridien de Rome</button>
+        </div>
+
+        <div class="question hidden" id="question6">
+            <p>Q6. Combien de satellites sont nécessaires au minimum pour que le GPS détermine une position précise ?</p>
+            <button onclick="checkAnswer(6, 'a')">A. 2 satellites</button>
+            <button onclick="checkAnswer(6, 'b')">B. 3 satellites</button>
+            <button onclick="checkAnswer(6, 'c')">C. 4 satellites</button>
+        </div>
+
+        <div class="question hidden" id="question7">
+            <p>Q7. Comment s’appelle un système qui permet d’analyser et visualiser des données géographiques ?</p>
+            <button onclick="checkAnswer(7, 'a')">A. GPS</button>
+            <button onclick="checkAnswer(7, 'b')">B. SIG</button>
+            <button onclick="checkAnswer(7, 'c')">C. Wifi</button>
+        </div>
+
+        <div class="question hidden" id="question8">
+            <p>Q8. Quelle carte ancienne servait surtout aux navigateurs en mer ?</p>
+            <button onclick="checkAnswer(8, 'a')">A. Carte IGN</button>
+            <button onclick="checkAnswer(8, 'b')">B. Portulan</button>
+            <button onclick="checkAnswer(8, 'c')">C. Atlas</button>
+        </div>
+
+        <div class="question hidden" id="question9">
+            <p>Q9. À quoi sert la cartographie aujourd’hui ? (plusieurs bonnes réponses possibles)</p>
+            <button onclick="checkAnswer(9, 'a')">A. Se repérer dans un centre commercial</button>
+            <button onclick="checkAnswer(9, 'b')">B. Prévoir la météo</button>
+            <button onclick="checkAnswer(9, 'c')">C. Dessiner des animaux</button>
+        </div>
+
+        <div id="result" class="hidden">
+            <p>Félicitations ! Vous avez terminé le quiz<img src="https://files.catbox.moe/el0z5a.gif"></p>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+
+        function checkAnswer(questionNumber, answer) {
+            const correctAnswers = {
+                1: 'a',
+                2: 'a',
+                3: 'b',
+                4: 'b',
+                5: 'b',
+                6: 'c',
+                7: 'b',
+                8: 'b',
+                9: ['a', 'b'] // Réponses multiples
+            };
+
+            if (questionNumber === 9) {
+                if (answer === 'a' || answer === 'b') {
+                    alert("Bonne réponse !");
+                    currentQuestion++;
+                    showNextQuestion();
+                } else {
+                    alert("Mauvaise réponse. Essayez encore.");
+                }
+            } else {
+                if (answer === correctAnswers[questionNumber]) {
+                    alert("Bonne réponse !");
+                    currentQuestion++;
+                    showNextQuestion();
+                } else {
+                    alert("Mauvaise réponse. Essayez encore.");
+                }
+            }
+        }
+
+        function showNextQuestion() {
+            const current = document.getElementById(`question${currentQuestion}`);
+            const next = document.getElementById(`question${currentQuestion + 1}`);
+
+            if (next) {
+                current.classList.add('hidden');
+                next.classList.remove('hidden');
+            } else {
+                current.classList.add('hidden');
+                document.getElementById('result').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html> 
